@@ -13,6 +13,6 @@ services:
     ports:
       - "8080:80"
     environment:
-      - BACKEND=http://juice-shop:3000
+      PROXY_PASS: "http://juice-shop:3000"
     depends_on:
       - juice-shop
