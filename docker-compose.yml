@@ -6,28 +6,11 @@ services:
       - "3000"
 
   waf:
-    image: owasp/modsecurity-crs:nginx
+    image: nginx:latest
     container_name: waf
     ports:
       - "8888:80"
-    environment:
-      PROXY_PASS: "http://juice-shop:3000"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
     depends_on:
       - juice-shop
-      
-      # services:
-#   juice-shop:
-#     image: bkimminich/juice-shop
-#     container_name: juice-shop
-#     expose:
-#       - "3000"
-
-#   waf:
-#     image: owasp/modsecurity-crs:nginx
-#     container_name: waf
-#     ports:
-#       - "8888:80"
-#     depends_on:
-#       - juice-shop
-#     volumes:
-#       - ./nginx.conf:/etc/nginx/conf.d/default.conf
